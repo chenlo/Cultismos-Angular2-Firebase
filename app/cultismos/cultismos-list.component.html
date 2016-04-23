@@ -1,0 +1,34 @@
+<div class="panel-heading">
+    <h2>{{ pageTitle }}</h2>    
+</div>
+<div class="panel-body">
+    <div class="row filter">
+        <div class="col-md-4"><span class="glyphicon glyphicon-search" aria-hidden="true"><input type="text" class="search" [(ngModel)]="listFilter"></span></div>
+        <div class="col-md-8">{{ filter }}</div>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Cultismo</th>
+                    <th>Corominas</th>
+                    <th>Ocurrencias</th>                   
+                </tr>
+            </thead>
+            <tr *ngFor="#cultismo of cultismos">
+                <td>{{ cultismo.cultismo }}</td>
+                <td>{{ cultismo.dcech }}</td>
+                <td>
+                    <ul>
+                        <li *ngFor="#ocurrencia of cultismo.ocurrencias">{{ ocurrencia }}</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel">
+        <div class="alert alert-danger" role="alert">
+            {{ noResultsMessage }}
+        </div>
+    </div>
+</div>
