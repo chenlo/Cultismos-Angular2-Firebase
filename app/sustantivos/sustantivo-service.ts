@@ -2,24 +2,24 @@ import { Injectable } from 'angular2/core';
 import { Http, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 
-import { ICultismo } from './cultismo';
+import { ISustantivo } from './sustantivo';
 
 @Injectable()
-export class CultismoService {
-    private _cultismoUrl = 'https://fiery-heat-1344.firebaseio.com/cultismos.json';
+export class SustantivoService {
+    private _sustantivoUrl = 'https://fiery-heat-1344.firebaseio.com/sustantivos.json';
 
     constructor(private _http: Http) { }
 
-    getCultismos(): Observable<ICultismo[]> {
-        return this._http.get(this._cultismoUrl)
-            .map((response: Response) => <ICultismo[]> response.json())
+    getSustantivos(): Observable<ISustantivo[]> {
+        return this._http.get(this._sustantivoUrl)
+            .map((response: Response) => <ISustantivo[]> response.json())
             //.do(data => console.log('Todos: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
-    getCultismo(id: string): Observable<ICultismo> {
-        return this.getCultismos()
-            .map((cultismos: ICultismo[]) => cultismos.find(c => c.cultismo === id));
+    getSustantivo(id: string): Observable<ISustantivo> {
+        return this.getSustantivos()
+            .map((sustantivos: ISustantivo[]) => sustantivos.find(s => s.sustantivo === id));
     }
 
     private handleError(error: Response) {

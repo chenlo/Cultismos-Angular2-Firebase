@@ -11,7 +11,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, http_1, Observable_1;
-    var CultismoService;
+    var AdjetivoService;
     return {
         setters:[
             function (core_1_1) {
@@ -24,34 +24,34 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
                 Observable_1 = Observable_1_1;
             }],
         execute: function() {
-            CultismoService = (function () {
-                function CultismoService(_http) {
+            AdjetivoService = (function () {
+                function AdjetivoService(_http) {
                     this._http = _http;
-                    this._cultismoUrl = 'https://fiery-heat-1344.firebaseio.com/cultismos.json';
+                    this._adjetivoUrl = 'https://fiery-heat-1344.firebaseio.com/adjetivos.json';
                 }
-                CultismoService.prototype.getCultismos = function () {
-                    return this._http.get(this._cultismoUrl)
+                AdjetivoService.prototype.getAdjetivos = function () {
+                    return this._http.get(this._adjetivoUrl)
                         .map(function (response) { return response.json(); })
                         .catch(this.handleError);
                 };
-                CultismoService.prototype.getCultismo = function (id) {
-                    return this.getCultismos()
-                        .map(function (cultismos) { return cultismos.find(function (c) { return c.cultismo === id; }); });
+                AdjetivoService.prototype.getAdjetivo = function (id) {
+                    return this.getAdjetivos()
+                        .map(function (adjetivos) { return adjetivos.find(function (a) { return a.adjetivo === id; }); });
                 };
-                CultismoService.prototype.handleError = function (error) {
+                AdjetivoService.prototype.handleError = function (error) {
                     // in a real world app, we may send the server to some remote logging infrastructure
                     // instead of just logging it to the console
                     console.error(error);
                     return Observable_1.Observable.throw(error.json().error || 'Server error');
                 };
-                CultismoService = __decorate([
+                AdjetivoService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])
-                ], CultismoService);
-                return CultismoService;
+                ], AdjetivoService);
+                return AdjetivoService;
             }());
-            exports_1("CultismoService", CultismoService);
+            exports_1("AdjetivoService", AdjetivoService);
         }
     }
 });
-//# sourceMappingURL=cultismo-service.js.map
+//# sourceMappingURL=adjetivo-service.js.map

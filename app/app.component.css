@@ -46,10 +46,15 @@ div.panel-heading {
     padding: 2em 1em;
     margin-bottom: 2em;
 }
-input {
-    margin-left: 1em;
+.filter strong {
+   font-weight: 900;
+   font-size: 1.25em; 
+   color: #3F464F;  
+}
+input.search {
+    margin-left: 1em; 
 }
 a.btn-default {
-   background-color: #B1E3E2;
-   color: #3F464F;
+   color: #B1E3E2;
+   background-color: #3F464F;
 }
