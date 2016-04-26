@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './cultismos-filter.pipe', './cultismo-service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,37 +10,43 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, router_1, cultismos_filter_pipe_1, cultismo_service_1;
     var CultismosListComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (cultismos_filter_pipe_1_1) {
+                cultismos_filter_pipe_1 = cultismos_filter_pipe_1_1;
+            },
+            function (cultismo_service_1_1) {
+                cultismo_service_1 = cultismo_service_1_1;
             }],
         execute: function() {
             CultismosListComponent = (function () {
-                function CultismosListComponent() {
+                function CultismosListComponent(_cultismoService) {
+                    this._cultismoService = _cultismoService;
                     this.pageTitle = 'Listado de cultismos';
-                    this.cultismos = [
-                        {
-                            "cultismo": "ACAÇIA0",
-                            "dcech": " a.1490",
-                            "ocurrencias": [" a.1250 AToledo", " a.1350 Montería", " a.1450 ACCirugía; acacia a. 1250 AToledo", " a.1493 TCGCauliaco  "]
-                        },
-                        {
-                            "cultismo": "ACCIDENTE",
-                            "dcech": " 1300",
-                            "ocurrencias": [" a.1254 Judizios", " a. 1259 AlfonsoX LCruces"]
-                        }
-                    ];
-                    this.noResultsMessage = "No se han encontrado resultados";
+                    this.msgCultismo = "Cultismo";
+                    this.msgDcech = "DCECH";
+                    this.msgOcurrencias = "Ocurrencias (CORDE)";
                 }
+                CultismosListComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    console.log('Initializing cultismos list');
+                    this._cultismoService.getCultismos().subscribe(function (cultismos) { return _this.cultismos = cultismos; }, function (error) { return _this.msgError = error; });
+                };
                 CultismosListComponent = __decorate([
                     core_1.Component({
-                        selector: 'cultismos-list',
-                        templateUrl: 'app/cultismos/cultismos-list.component.html'
+                        templateUrl: 'app/cultismos/cultismos-list.component.html',
+                        pipes: [cultismos_filter_pipe_1.CultismoFilterPipe],
+                        directives: [router_1.ROUTER_DIRECTIVES]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [cultismo_service_1.CultismoService])
                 ], CultismosListComponent);
                 return CultismosListComponent;
             }());

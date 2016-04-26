@@ -1,25 +1,32 @@
-import { Component } from 'angular2/core';
-import { ICultismo } from './cultismo';
+import { Component, OnInit } from 'angular2/core';
+import { Component, OnInit }  from 'angular2/core';
+import { ROUTER_DIRECTIVES } from 'angular2/router';
 
+import { ICultismo } from './cultismo';
+import { CultismoFilterPipe } from './cultismos-filter.pipe';
+import { CultismoService } from './cultismo-service';
 @Component ({
-    selector: 'cultismos-list',
-    templateUrl : 'app/cultismos/cultismos-list.component.html'
+    templateUrl : 'app/cultismos/cultismos-list.component.html',
+    pipes: [CultismoFilterPipe],
+    directives: [ROUTER_DIRECTIVES]
 })
 
 export class CultismosListComponent {
     pageTitle : string = 'Listado de cultismos';
-    cultismos: ICultismo[] = [ 
-        { 
-            "cultismo" : "ACAÇIA0", 
-            "dcech" : " a.1490", 
-            "ocurrencias" : [ " a.1250 AToledo", " a.1350 Montería", " a.1450 ACCirugía; acacia a. 1250 AToledo", " a.1493 TCGCauliaco  " ]
-        }, 
-        {
-            "cultismo" : "ACCIDENTE",
-            "dcech" : " 1300",
-            "ocurrencias" : [ " a.1254 Judizios", " a. 1259 AlfonsoX LCruces" ]
-        }
-    ];
+    cultismos: ICultismo[];
     listFilter : string;
-    noResultsMessage : string = "No se han encontrado resultados";
+    msgCultismo : string = "Cultismo";
+    msgDcech : string = "DCECH";
+    msgOcurrencias : string = "Ocurrencias (CORDE)";
+    msgError : string;
+    
+    constructor(private _cultismoService: CultismoService) {}
+    
+    ngOnInit() : void {
+        console.log('Initializing cultismos list');
+        this._cultismoService.getCultismos().subscribe(
+            cultismos => this.cultismos = cultismos,
+            error =>  this.msgError = <any>error
+        );
+    }
 }

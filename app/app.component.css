@@ -49,3 +49,7 @@ div.panel-heading {
 input {
     margin-left: 1em;
 }
+a.btn-default {
+   background-color: #B1E3E2;
+   color: #3F464F;
+}
