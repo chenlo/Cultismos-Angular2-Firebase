@@ -3,13 +3,19 @@
     "version": "1.0.0",
     "author": "Bernardo Chenlo",
     "description": "Cultismos display from Firebase data using Angular2",
+    "engines": {
+        "node": "4.1.0",
+        "npm": "~3.3.x"
+    },
     "scripts": {
+        /*
         "start": "concurrent \"npm run tsc:w\" \"npm run lite\" ",
         "tsc": "tsc",
         "tsc:w": "tsc -w",
         "lite": "lite-server",
         "typings": "typings",
         "postinstall": "typings install"
+        */
     },
     "license": "ISC",
     "dependencies": {
@@ -21,11 +27,13 @@
         "zone.js": "0.6.10",
         "bootstrap": "^3.3.6"
     },
+    /*
     "devDependencies": {
         "concurrently": "^2.0.0",
         "lite-server": "^2.2.0",
         "typescript": "^1.8.10",
         "typings": "^0.7.12"
     },
+    */
     "repository": {}
 }
